@@ -1,0 +1,4 @@
+Provider: Amazon
+//Firstly we need to know IP address of slash16.org (nslookup slash16.org)
+//Then we use one of IP addresses and write in Terminal: whois [ip_address]
+//In the displayed information we see the provider

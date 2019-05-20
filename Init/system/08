@@ -1,0 +1,1 @@
+The RSA keys are contained in authorized_keys. This file is located on .ssh folder. So, full path is ~/.ssh/authorized_keys
