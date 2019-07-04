@@ -3,49 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrika <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:57:14 by rrika             #+#    #+#             */
-/*   Updated: 2019/02/21 20:20:22 by rrika            ###   ########.fr       */
+/*   Updated: 2019/07/03 15:36:04 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-char	*ft_itoa(int nbr)
+char    *ft_itoa(int nbr)
 {
-	char *arr;
-	int i;
-	int nbr2;
+    int        len;
+    int    n;
+    char    *str;
 
-	i = 1;
-	nbr2 = nbr;
-	if (nbr == 0 || nbr < 0)
-	{
-		i++;
-		nbr2 = nbr * -1;
-	}
-	while (nbr2 /= 10)
-		i++;
-	if ((arr = (char*)malloc(sizeof(char) * (i + 1))) == 0)
-		return (0);
-	arr[i] = '\0';
-	i--;
-	while (i >= 0)
-	{
-		arr[i--] = nbr % 10 + '0';
-		nbr = nbr / 10;
-	}
-	if (nbr < 0)
-		arr[0] = '-';
-	return (arr);
+    if (nbr == -2147483648)
+        return ("-2147483648");
+    len = 0;
+    n = nbr;
+    while (n != 0)
+    {
+        n /= 10;
+        len += 1;
+    }
+    n = nbr;
+    if (nbr < 0)
+    {
+        len += 1;
+        n *= -1;
+    }
+    if (!(str = (char *)malloc(sizeof(char) * len + 1)))
+        return (NULL);
+    str[len] ='\0';
+    while (n != 0)
+    {
+        str[--len] = (n % 10) + '0';
+        n /= 10;
+    }
+    if (nbr < 0)
+      str[0] = '-';
+    return (str);
 }
 
-int		main()
+int main()
 {
-	int nbr = 123;
-
-	printf("%s\n", ft_itoa(nbr));
-	return (0);
+  int nbr = -123;
+  
+  printf("%s\n", ft_itoa(nbr));
+  return (0);
 }
