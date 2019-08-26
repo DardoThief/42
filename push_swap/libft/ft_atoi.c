@@ -6,13 +6,13 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 11:24:58 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/26 18:31:36 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 19:10:24 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_error(void)
+void		ft_error(void)
 {
 	write(2, "\033[31mError\n\033[0m", 15);
 	exit(1);

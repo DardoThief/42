@@ -6,7 +6,7 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 13:13:01 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/26 17:58:48 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 19:09:18 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,3 @@ char			**ft_strsplit(char const *s, char c)
 		str++;
 	return (ft_strsplit2(str, c));
 }
-

@@ -6,15 +6,15 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 15:29:06 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/23 14:59:18 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 19:12:14 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void		commands(t_link **a, t_link **b)
+static void	commands(t_link **a, t_link **b)
 {
-	char		*cmd;
+	char	*cmd;
 
 	while (get_next_line(0, &cmd) > 0)
 	{
@@ -25,7 +25,7 @@ static void		commands(t_link **a, t_link **b)
 		free(cmd);
 }
 
-static int		check(t_link *a, t_link *b)
+static int	check(t_link *a, t_link *b)
 {
 	if (b)
 		return (0);
@@ -37,21 +37,6 @@ static int		check(t_link *a, t_link *b)
 	}
 	return (1);
 }
-
-// t_link		*parse_arg(int k, int ac, char **av)
-// {
-// 	t_link	*a;
-// 	int		n;
-
-// 	a = NULL;
-// 	while (++k < ac)
-// 	{
-// 		n = ft_atoi(av[k]);
-// 		dupe_check(a, n);
-// 		ft_lstend(&a, n);
-// 	}
-// 	return (a);
-// }
 
 t_link		*parse_arg(int k, int ac, char **av)
 {
@@ -77,10 +62,10 @@ t_link		*parse_arg(int k, int ac, char **av)
 	return (a);
 }
 
-int				main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	t_link		*a;
-	t_link		*b;
+	t_link	*a;
+	t_link	*b;
 
 	if (argc == 1)
 		return (0);
@@ -92,4 +77,3 @@ int				main(int argc, char **argv)
 	ft_lstfree(&b);
 	return (0);
 }
- 
