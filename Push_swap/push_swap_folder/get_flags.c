@@ -6,17 +6,11 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 16:30:25 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/12 15:35:07 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 17:34:19 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void		ft_error(void)
-{
-	write(2, "\033[31mError\n\033[0m", 15);
-	exit(1);
-}
 
 t_flags		init_flags(void)
 {
@@ -27,22 +21,21 @@ t_flags		init_flags(void)
 	return (flags);
 }
 
-t_flags		get_flags(int k, char *c, t_flags flags)
+void		get_flags(int k, char *c, t_stack *stack)
 {
 	if (k == 0)
-		return (flags);
+		return ;
 	if (ft_strcmp(c, "-v") == 0)
-		flags.v = true;
+		stack->flags.v = true;
 	else if (ft_strcmp(c, "-c") == 0)
-		flags.c = true;
+		stack->flags.c = true;
 	else if (ft_strcmp(c, "-vc") == 0 || ft_strcmp(c, "-cv") == 0)
 	{
-		flags.c = true;
-		flags.v = true;
+		stack->flags.c = true;
+		stack->flags.v = true;
 	}
 	else
 		ft_error();
-	return (flags);
 }
 
 int			check_mod(char *str, int n)

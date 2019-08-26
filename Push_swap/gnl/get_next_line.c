@@ -5,80 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 13:45:09 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/09 14:45:13 by rrika            ###   ########.fr       */
+/*   Created: 2019/04/20 10:41:12 by mbernard          #+#    #+#             */
+/*   Updated: 2019/08/23 17:53:07 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../push_swap.h"
+#include "get_next_line.h"
 
-static char			*ft_strccpy(char *dst, const char *src, char c)
+static int		end_line(char **line, char **str, int flag)
 {
-	int				i;
+	char	*temp;
+	char	*temp2;
 
-	i = -1;
-	while (src[++i] && (src[i] != c))
-		dst[i] = src[i];
-	dst[i] = '\0';
-	return (dst);
-}
-
-static t_list		*assign_save(t_list **save, int fd)
-{
-	t_list			*tmp;
-
-	tmp = *save;
-	while (tmp)
+	if ((*str)[0] == '\0' && flag == 0)
 	{
-		if ((int)(tmp->content_size) == fd)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	tmp = ft_lstnew("\0", 0);
-	ft_lstadd(save, tmp);
-	return (*save);
-}
-
-static void			cleanup(t_list *ptr)
-{
-	char			*tmp;
-
-	if ((tmp = ft_strchr(ptr->content, '\n')))
-	{
-		tmp = ft_strdup(tmp + 1);
-		free(ptr->content);
-		ptr->content = tmp;
-	}
-	else
-		ft_strclr(ptr->content);
-}
-
-int					get_next_line(const int fd, char **line)
-{
-	char			buf[BUFF_SIZE + 1];
-	char			*tmp;
-	int				check;
-	static t_list	*save;
-	t_list			*ptr;
-
-	ERROR_CHECK(fd < 0 || line == NULL || read(fd, buf, 0) < 0);
-	ptr = assign_save(&save, fd);
-	while ((check = read(fd, buf, BUFF_SIZE)) > 0)
-	{
-		buf[check] = '\0';
-		ERROR_CHECK(!(tmp = ft_strjoin(ptr->content, buf)));
-		free(ptr->content);
-		ptr->content = tmp;
-		BREAK_CHECK((ft_strchr(ptr->content, '\n')));
-	}
-	if (!check && !ft_strlen(ptr->content))
-	{
-		ft_strclr(*line);
+		*line = NULL;
+		ft_memdel((void *)str);
 		return (0);
 	}
-	ERROR_CHECK(!(*line = ft_strnew(ft_strlen(ptr->content))));
-	*line = ft_strccpy(*line, ptr->content, '\n');
-	cleanup(ptr);
+	else if ((temp2 = ft_strchr(*str, '\n')) != 0)
+	{
+		temp = *str;
+		temp2[0] = '\0';
+		*line = ft_strdup(temp);
+		*str = ft_strdup(temp2 + 1);
+		free(temp);
+		return (1);
+	}
+	*line = *str;
+	*str = NULL;
+	if ((*line)[0] == '\0' || (*line)[0] == '\n')
+	{
+		ft_strdel(line);
+		return (0);
+	}
 	return (1);
+}
+
+int				get_next_line(const int fd, char **line)
+{
+	char		buf[BUFF_SIZE + 1];
+	static char *str[10240];
+	char		*temp;
+	int			ret[2];
+
+	if (fd < 0 || read(fd, NULL, 0) < 0 || !line || fd > 10240)
+		return (-1);
+	ret[1] = ((str[fd] == 0) ? 0 : 1);
+	if (!(str[fd]))
+		str[fd] = ft_strnew(0);
+	if (ft_strchr(str[fd], '\n') == 0)
+	{
+		buf[0] = '\0';
+		while (!(ft_strchr(buf, '\n')))
+		{
+			if ((ret[0] = read(fd, buf, BUFF_SIZE)) == 0)
+				break ;
+			buf[ret[0]] = '\0';
+			temp = ft_strjoin(str[fd], buf);
+			free(str[fd]);
+			str[fd] = temp;
+		}
+	}
+	return (end_line(line, &str[fd], ret[1]));
 }

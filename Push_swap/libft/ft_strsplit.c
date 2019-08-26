@@ -6,7 +6,7 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 13:13:01 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/09 14:30:42 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 17:58:48 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,13 @@ static	int		ft_words(char *str, char c)
 	return (count);
 }
 
-static char		**ft_free_table(char **str)
+static int		check(char c, char n, char **chr)
 {
-	int		n;
-
-	n = 0;
-	while (str[n])
+	if ((c == '-' || c == '+') && (n == ' ' || n == '\0'))
 	{
-		free(str[n]);
-		n++;
+		ft_strdel(chr);
+		return (1);
 	}
-	free(str[n]);
-	free(str);
 	return (0);
 }
 
@@ -70,6 +65,8 @@ static	char	**ft_strsplit2(char *str, char c)
 		chr2 = chr[j];
 		while (str[0] != '\0' && str[0] != c)
 		{
+			if (check(str[0], str[1], chr) == 1)
+				ft_error();
 			chr2[0] = str[0];
 			chr2++;
 			str++;
@@ -92,3 +89,4 @@ char			**ft_strsplit(char const *s, char c)
 		str++;
 	return (ft_strsplit2(str, c));
 }
+

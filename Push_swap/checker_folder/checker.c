@@ -6,7 +6,7 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 15:29:06 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/09 14:31:55 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/23 14:59:18 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,45 @@ static int		check(t_link *a, t_link *b)
 	return (1);
 }
 
+// t_link		*parse_arg(int k, int ac, char **av)
+// {
+// 	t_link	*a;
+// 	int		n;
+
+// 	a = NULL;
+// 	while (++k < ac)
+// 	{
+// 		n = ft_atoi(av[k]);
+// 		dupe_check(a, n);
+// 		ft_lstend(&a, n);
+// 	}
+// 	return (a);
+// }
+
+t_link		*parse_arg(int k, int ac, char **av)
+{
+	t_link	*a;
+	int		n;
+	char	**str;
+	int		i;
+
+	a = NULL;
+	while (++k < ac)
+	{
+		i = 0;
+		str = ft_strsplit(av[k], ' ');
+		while (str[i])
+		{
+			n = ft_atoi(str[i]);
+			dupe_check(a, n);
+			ft_lstend(&a, n);
+			i++;
+		}
+		ft_free_table(str);
+	}
+	return (a);
+}
+
 int				main(int argc, char **argv)
 {
 	t_link		*a;
@@ -45,7 +84,7 @@ int				main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
-	a = parse_args(0, argc, argv);
+	a = parse_arg(0, argc, argv);
 	b = NULL;
 	commands(&a, &b);
 	ft_putendl(check(a, b) ? "\033[32mOK\033[0m" : "\033[31mKO\033[0m");
@@ -53,3 +92,4 @@ int				main(int argc, char **argv)
 	ft_lstfree(&b);
 	return (0);
 }
+ 

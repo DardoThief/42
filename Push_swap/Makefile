@@ -6,7 +6,7 @@
 #    By: rrika <rrika@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 16:57:22 by rrika             #+#    #+#              #
-#    Updated: 2019/08/09 17:51:38 by rrika            ###   ########.fr        #
+#    Updated: 2019/08/23 15:54:44 by rrika            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ $(PUSH): $(SRC_PUSH)
 
 $(CHECK): $(SRC_CHECK)
 		@$(MAKE) -C ./libft
-		gcc -Wall -Wextra -Werror $(SRC_CHECK) $(SRC) $(LIB) -I $(INC) -o $(CHECK)
+		gcc -ggdb -Wall -Wextra -Werror $(SRC_CHECK) $(SRC) $(LIB) -I $(INC) -o $(CHECK)
 
 clean:
 		@$(MAKE) -C ./libft clean

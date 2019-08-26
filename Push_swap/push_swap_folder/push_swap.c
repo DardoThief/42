@@ -6,7 +6,7 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 16:08:02 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/12 15:35:03 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 15:45:21 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ int			main(int ac, char **av)
 {
 	t_stack	stack;
 	int		k;
-	t_flags	flags;
 
-	flags = init_flags();
+	stack.flags = init_flags();
 	k = check_mod(av[1], ac);
 	if (k == 1)
-		stack.flags = get_flags(k, av[1], flags);
+		get_flags(k, av[1], &stack);
 	stack.a = parse_args(k, ac, av);
 	if (!(stack.a))
 		return (0);

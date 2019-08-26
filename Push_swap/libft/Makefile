@@ -6,7 +6,7 @@
 #    By: rrika <rrika@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/10 12:19:57 by rrika             #+#    #+#              #
-#    Updated: 2019/08/05 18:04:38 by rrika            ###   ########.fr        #
+#    Updated: 2019/08/23 17:20:59 by rrika            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ OBJ := $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) -c $(SRC) -I $(HEADER)
+	@gcc -ggdb $(FLAGS) -c $(SRC) -I $(HEADER)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 

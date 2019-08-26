@@ -6,7 +6,7 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:52:54 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/13 14:30:03 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 17:33:19 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <string.h>
 # include <stdlib.h>
 
+void				ft_error(void);
+char				**ft_free_table(char **str);
 void				*ft_memset(void *memptr, int val, size_t num);
 void				ft_bzero(void *ptr, size_t num);
 void				*ft_memcpy(void *dts, const void *src, size_t n);

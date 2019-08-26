@@ -6,7 +6,7 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 16:09:47 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/12 18:20:33 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 17:34:05 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,9 @@ typedef struct		s_stack
 	t_flags			flags;
 }					t_stack;
 
-t_flags				get_flags(int k, char *av, t_flags flags);
+void				get_flags(int k, char *av, t_stack *stack);
 int					check_mod(char *str, int n);
 t_flags				init_flags();
-
-void				ft_error();
 
 void				ft_lstfree(t_link **s);
 int					ft_lstsize(t_link *a);

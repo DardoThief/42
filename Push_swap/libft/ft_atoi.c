@@ -6,13 +6,13 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 11:24:58 by rrika             #+#    #+#             */
-/*   Updated: 2019/08/13 14:30:43 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/26 18:31:36 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_error(void)
+void	ft_error(void)
 {
 	write(2, "\033[31mError\n\033[0m", 15);
 	exit(1);
@@ -37,10 +37,11 @@ int			ft_atoi(const char *str)
 	while (str[i] <= '9' && str[i] >= '0')
 	{
 		n = n * 10 + (str[i] - '0');
+		if (n * s > 2147483647 || n * s < -2147483648)
+			ft_error();
 		i++;
 	}
-	if ((!ft_is_space(str[i]) && str[i] >= 32 && str[i] <= 126) || \
-			n < -2147483648 || n > 2147483647)
+	if (!ft_is_space(str[i]) && str[i] >= 32 && str[i] <= 126)
 		ft_error();
 	return ((unsigned long)n * s);
 }
