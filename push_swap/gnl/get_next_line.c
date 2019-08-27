@@ -6,7 +6,7 @@
 /*   By: rrika <rrika@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 10:41:12 by mbernard          #+#    #+#             */
-/*   Updated: 2019/08/23 17:53:07 by rrika            ###   ########.fr       */
+/*   Updated: 2019/08/27 17:56:54 by rrika            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ static int		end_line(char **line, char **str, int flag)
 	}
 	*line = *str;
 	*str = NULL;
-	if ((*line)[0] == '\0' || (*line)[0] == '\n')
-	{
-		ft_strdel(line);
+	((*line)[0] == '\0' || (*line)[0] == '\n') ? ft_strdel(line) : 0;
 		return (0);
-	}
 	return (1);
 }
 
