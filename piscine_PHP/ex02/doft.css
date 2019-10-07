@@ -1,0 +1,16 @@
+body{
+	background-color: #909090;
+}
+.Boxes {
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
+}
+.topBox{
+	vertical-align: center;
+	margin: 10%;
+	background-color: grey;
+}
+.twoBoxes {
+	border-radius: 10px;
+	background-color: red;
+}
